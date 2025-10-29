@@ -1,4 +1,4 @@
-# 🖥️ # 🏫 Fergusson College – Query Chatbot Website
+# 🏫 Fergusson College – Query Chatbot Website
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Language: C](https://img.shields.io/badge/Language-C-blue)
 
