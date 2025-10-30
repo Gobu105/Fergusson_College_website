@@ -58,7 +58,7 @@
     }
 
     .about-img img {
-      width: 100%;
+      width: 80%;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       transition: transform 0.3s;
@@ -222,12 +222,43 @@
       </p>
     </div>
   </section>
+  
+  <!-- Floating Chat Button -->
+  <button class="chat-btn" onclick="toggleChat()">
+    <span class="chat-icon">💬</span>
+  </button>
+
+
+  <!-- Chat Section -->
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    Chat with Us
+  </div>
+
+  <div class="chat-body" id="chat-body">
+    <div class="chat-message">👋 Hello! How can I help you today?</div>
+  </div>
+
+  <div class="chat-footer" id="chatFooter">
+    <form id="chatForm" style="display:flex; width:100%;">
+      <input
+        type="text"
+        name="message"
+        id="message"
+        placeholder="Type your question..."
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
 
   <!-- FOOTER -->
   <footer>
     &copy; <?php echo date("Y"); ?> Fergusson College | All Rights Reserved.
   </footer>
-
+  <script src="script/script.js"></script>
 </body>
 </html>
 
