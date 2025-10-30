@@ -6,6 +6,15 @@
   <title>Fergusson College</title>
   <link rel="stylesheet" href="script/styles.css">
   <script src="script/script.js" defer></script>
+  <style>
+      footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e3a8a;
+      color: white;
+      border-top: 5px solid #2563eb;
+    }
+  </style>
 </head>
 <body>
 
@@ -476,6 +485,10 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
+  <footer>
+    &copy; <?php echo date("Y"); ?> Fergusson College | All Rights Reserved.
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>

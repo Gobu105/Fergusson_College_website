@@ -96,58 +96,45 @@
 
 
 
-    <section id="courses">
+<section id="courses">
   <h2>Courses Offered</h2>
   <div class="courses-container">
-    
+
     <div class="course-card">
       <h3>Undergraduate Programmes</h3>
-      <p>
-        Programs inspire curiosity, foster critical thinking, and prepare students for dynamic careers and lifelong success.
-        With a rigorous, interdisciplinary curriculum and hands-on learning, students explore their passions while building
-        a strong foundation for the future.
-      </p>
+      <p>Programs inspire curiosity, foster critical thinking, and prepare students for dynamic careers and lifelong success.</p>
       <div class="courses-btn-container">
-	  <a href="courses.php" class="read-more-btn">Read More →</a>
+        <a href="courses.php?type=undergraduate" class="read-more-btn">Read More →</a>
       </div>
     </div>
 
     <div class="course-card">
       <h3>Postgraduate Programmes</h3>
-      <p>
-        Postgraduate programs deepen expertise, foster innovation, and equip students with advanced knowledge to excel in
-        their fields. With research-driven learning and industry collaboration, graduates become future leaders and innovators.
-      </p>
+      <p>Postgraduate programs deepen expertise, foster innovation, and equip students with advanced knowledge to excel in their fields.</p>
       <div class="courses-btn-container">
-	  <a href="courses.php" class="read-more-btn">Read More →</a>
+        <a href="courses.php?type=postgraduate" class="read-more-btn">Read More →</a>
       </div>
     </div>
 
     <div class="course-card">
       <h3>Doctoral Programmes</h3>
-      <p>
-        PhD programs foster advanced research and innovation, empowering scholars to contribute original knowledge to global
-        challenges. Guided by expert faculty, candidates engage in impactful research and collaborative projects.
-      </p>
+      <p>PhD programs foster advanced research and innovation, empowering scholars to contribute original knowledge to global challenges.</p>
       <div class="courses-btn-container">
-	  <a href="courses.php" class="read-more-btn">Read More →</a>
+        <a href="courses.php?type=doctoral" class="read-more-btn">Read More →</a>
       </div>
     </div>
 
     <div class="course-card">
       <h3>Diploma Programmes</h3>
-      <p>
-        Our diploma programs provide practical, industry-relevant skills and foundational knowledge to help students excel.
-        Combining theory with hands-on learning, these programs prepare learners for successful, career-ready futures.
-      </p>
+      <p>Our diploma programs provide practical, industry-relevant skills and foundational knowledge to help students excel.</p>
       <div class="courses-btn-container">
-	  <a href="courses.php" class="read-more-btn">Read More →</a>
+        <a href="courses.php?type=diploma" class="read-more-btn">Read More →</a>
       </div>
-
     </div>
 
   </div>
 </section>
+
 
 
 <section class="faculty-preview" id="faculty">
@@ -436,7 +423,7 @@
 
     <!-- CENTER: College Info -->
     <div class="footer-center">
-      <img src="images.png" 
+      <img src="images/images.png" 
            alt="Fergusson College Logo" class="college-logo">
       <h3>Fergusson College, Pune</h3>
       <p>Affiliated to Savitribai Phule Pune University</p>
