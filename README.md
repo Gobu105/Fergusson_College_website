@@ -10,7 +10,7 @@
 
 ## 🤖 Project Overview
 
-This project is designed to simplify the student admission process and general inquiry handling using an interactive chatbot built with **PHP and MySQL**.  
+This project is designed to simplify the student admission process and general inquiry handling using an interactive chatbot built with **PHP and Python**.  
 The website also showcases essential details about the **college, faculty, courses, infrastructure, and events**, providing an all-in-one information hub.
 
 ---
