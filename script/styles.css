@@ -819,61 +819,6 @@ button:hover, .btn:hover {
   background: #006ae6;
 }
 
-/* ---------- Chat Auth Section (Login/Register) ---------- */
-.auth-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px; /* spacing between elements */
-  margin-top: 10px;
-}
-
-.auth-container input {
-  width: 90%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #f9f9f9;
-  outline: none;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-}
-
-.auth-container input:focus {
-  border-color: #007bff;
-  background: #fff;
-}
-
-.auth-container button {
-  width: 95%;
-  background: linear-gradient(135deg, #007bff, #00bcd4);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 0;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.auth-container button:hover {
-  background: linear-gradient(135deg, #006ae6, #00a0c0);
-}
-
-.auth-container p {
-  font-size: 13px;
-  color: #333;
-}
-
-.auth-container a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.auth-container a:hover {
-  text-decoration: underline;
-}
-
 .chat-body h3 {
   text-align: center;
   margin-bottom: 10px;
@@ -1320,80 +1265,48 @@ footer {
   }
 }
 
-/* ---------- Mobile Phones (≤ 480px) ---------- */
+/* ---------- Keep Desktop Layout on Mobile ---------- */
 @media (max-width: 480px) {
-  .logo-center img {
+  html {
+    transform: scale(0.85);       /* shrink overall content */
+    transform-origin: top center; /* scale from top */
+    width: 117%;                  /* fix minor cutoff issue */
+    overflow-x: hidden;           /* prevent scroll */
+  }
+
+  /* Ensure grids remain multi-column like desktop */
+  .courses-container,
+  .labs-list,
+  .faculty-grid,
+  .footer-content {
+    grid-template-columns: inherit !important;
+  }
+
+  /* Keep horizontal flex layouts (like events, reviews, etc.) */
+  .event-cards,
+  .reviews-container {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  /* Fix chat button & container position */
+  .chat-btn {
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
     height: 60px;
+    font-size: 24px;
   }
 
-  .hero-content {
-    padding: 1rem;
-    border-radius: 10px;
-  }
-
-  .hero-content h1 {
-    font-size: 1.4rem;
-  }
-
-  .hero-content .tagline {
-    font-size: 0.9rem;
-  }
-
-  #about-section {
-    padding: 30px 20px;
-  }
-
-  .about-content h2 {
-    font-size: 1.5rem;
-  }
-
-  .courses-container {
-    grid-template-columns: 1fr;
-  }
-
-  .labs-list {
-    grid-template-columns: 1fr;
-  }
-
-  .faculty-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .faculty-card img {
-    height: 180px;
-  }
-
-  .faculty-card h3 {
-    font-size: 1rem;
-  }
-
-  .faculty-card p {
-    font-size: 0.85rem;
-  }
-
-  .event-card {
-    width: 100%;
-  }
-
-  .review-card {
-    flex: 0 0 100%;
-    min-width: 240px;
+  .chat-container {
+    width: 380px;
+    right: 15px;
+    bottom: 85px;
   }
 
   footer {
     text-align: center;
-  }
-
-  .chat-btn {
-    width: 55px;
-    height: 55px;
-    font-size: 22px;
-  }
-
-  .chat-container {
-    width: 95%;
-    right: 2.5%;
-    bottom: 80px;
+    padding: 1.5rem;
   }
 }
-
