@@ -34,8 +34,8 @@ The website also showcases essential details about the **college, faculty, cours
 | Layer | Technologies Used |
 |-------|--------------------|
 | **Frontend** | HTML5, CSS3, JavaScript |
-| **Backend** | PHP |
-| **Database** | MySQL |
+| **Backend** | PHP/Python |
+| **Database** | CSV |
 | **Version Control** | Git & GitHub |
 | **Server Environment** | XAMPP / Apache on localhost |
 
