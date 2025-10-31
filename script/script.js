@@ -23,60 +23,48 @@ function toggleChat() {
 }
 
 // ---------- Chatbot Functionality ----------
-document.getElementById("chatForm").addEventListener("submit", function (event) {
+document.getElementById('chatForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const messageInput = document.getElementById("message");
+  const messageInput = document.getElementById('message');
   const message = messageInput.value.trim();
-  const chatBody = document.getElementById("chat-body");
+  const chatBody = document.getElementById('chat-body');
 
   if (message === "") return;
 
   // Display user's message
-  const userMessage = document.createElement("div");
-  userMessage.classList.add("chat-message", "user");
+  const userMessage = document.createElement('div');
+  userMessage.classList.add('chat-message', 'user');
   userMessage.innerText = message;
   chatBody.appendChild(userMessage);
 
-  // Add temporary "typing..." message
-  const typingMessage = document.createElement("div");
-  typingMessage.classList.add("chat-message");
-  typingMessage.innerText = "🤖 Typing...";
-  chatBody.appendChild(typingMessage);
-
   // Send message to PHP backend (chat.php)
-  fetch("chat.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ message }),
+  fetch('chat.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ message })
   })
-    .then((response) => response.json())
-    .then((data) => {
-      // Remove typing message
-      typingMessage.remove();
-
-      // Display bot's reply
-      const botMessage = document.createElement("div");
-      botMessage.classList.add("chat-message");
-      botMessage.innerText =
-        data.reply || data.response || "⚠️ No reply from chatbot.";
+    .then(response => response.json()) // Parse JSON
+    .then(data => {
+      const botMessage = document.createElement('div');
+      botMessage.classList.add('chat-message', 'bot');
+      // ✅ Only show the reply text, not the full JSON
+      botMessage.innerText = data.reply || data.response || "⚠️ No reply received.";
       chatBody.appendChild(botMessage);
-
-      // Auto-scroll to bottom
       chatBody.scrollTop = chatBody.scrollHeight;
     })
-    .catch((error) => {
-      console.error("Error:", error);
-      typingMessage.remove();
-      const errorMessage = document.createElement("div");
-      errorMessage.classList.add("chat-message");
+    .catch(error => {
+      console.error('Error:', error);
+      const errorMessage = document.createElement('div');
+      errorMessage.classList.add('chat-message', 'bot');
       errorMessage.innerText = "⚠️ Unable to connect to chatbot.";
       chatBody.appendChild(errorMessage);
     });
 
   // Clear input
-  messageInput.value = "";
+  messageInput.value = '';
 });
+
 
 // ---------- Faculty Search ----------
 const facultySearch = document.getElementById("facultySearch");
