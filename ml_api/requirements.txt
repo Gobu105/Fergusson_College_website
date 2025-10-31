@@ -1,6 +1,6 @@
-flask
+Flask
 pandas
-joblib
 scikit-learn
 rapidfuzz
-
+joblib
+gunicorn
