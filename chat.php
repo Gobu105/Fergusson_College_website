@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $a = trim($a);
 
             // Call Python API
-            $apiUrl = "https://fergusson-ml-api.onrender.com/chat";
+            $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/chat";
 	    $data = json_encode(["message" => $userMessage]);
 
             $ch = curl_init($apiUrl);
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // --- NORMAL CHAT ---
-    $apiUrl = "https://fergusson-ml-api.onrender.com/chat";
+    $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/chat";
     $data = json_encode(["message" => $userMessage]);
 
     $ch = curl_init($apiUrl);
