@@ -16,7 +16,6 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.pkl
 *.sqlite3
 *.db
 
