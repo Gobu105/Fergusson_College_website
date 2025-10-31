@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $a = trim($a);
 
             // Call Python API
-            $apiUrl = "https://fergusson-ml-api.onrender.com/teach";
-            $data = json_encode(["question" => $q, "answer" => $a]);
+            $apiUrl = "https://fergusson-ml-api.onrender.com/chat";
+	    $data = json_encode(["message" => $userMessage]);
 
             $ch = curl_init($apiUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

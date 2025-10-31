@@ -481,7 +481,7 @@
 </div>
 
 
-    <script src="script.js"></script> <!-- Link to JavaScript file -->
+    <script src="script/script.js"></script> <!-- Link to JavaScript file -->
 
 </body>
 </html>
