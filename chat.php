@@ -1,11 +1,10 @@
 <?php
 header("Content-Type: application/json");
 
-// Only handle POST requests
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $userMessage = trim($_POST["message"] ?? "");
 
-    // --- "Teach" mode (store new Q&A) ---
+    // --- TEACH MODE ---
     if (stripos($userMessage, "teach:") === 0) {
         $content = trim(substr($userMessage, 6));
         if (strpos($content, "=") !== false) {
@@ -13,35 +12,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $q = trim($q);
             $a = trim($a);
 
-            // Save to faq_data.csv
-            $file = fopen("faq_data.csv", "a");
-            fputcsv($file, [$q, $a]);
-            fclose($file);
+            // Call Python API
+            $apiUrl = "https://fergusson-ml-api.onrender.com/teach";
+            $data = json_encode(["question" => $q, "answer" => $a]);
 
-            echo json_encode([
-                "reply" => "✅ Got it! I learned something new: '$q' → '$a'."
-            ]);
+            $ch = curl_init($apiUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            echo $response;
+            exit;
         } else {
-            echo json_encode([
-                "reply" => "⚠️ Format error. Use: teach: [question] = [answer]"
-            ]);
-        }
-        exit;
-    }
-
-    // --- Simple FAQ matching mode ---
-    $reply = "🤖 Thanks for your message! We'll get back to you soon.";
-
-    if (file_exists("faq_data.csv")) {
-        $lines = array_map('str_getcsv', file("faq_data.csv"));
-        foreach ($lines as $row) {
-            if (stripos($userMessage, $row[0]) !== false) {
-                $reply = $row[1];
-                break;
-            }
+            echo json_encode(["reply" => "⚠️ Format error. Use: teach: [question] = [answer]"]);
+            exit;
         }
     }
 
-    echo $reply;
+    // --- NORMAL CHAT ---
+    $apiUrl = "https://fergusson-ml-api.onrender.com/chat";
+    $data = json_encode(["message" => $userMessage]);
+
+    $ch = curl_init($apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    if ($response) {
+        echo $response;
+    } else {
+        echo json_encode(["reply" => "⚠️ Python backend not reachable."]);
+    }
 }
 ?>
