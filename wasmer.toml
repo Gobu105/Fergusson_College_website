@@ -1,0 +1,11 @@
+[project]
+name = "fergusson-college-website"
+version = "1.0.0"
+description = "Fergusson College website with chatbot"
+
+[dependencies]
+php = ">=8.2"
+
+[start]
+cmd = "php -S 0.0.0.0:8080 -t ."
+
