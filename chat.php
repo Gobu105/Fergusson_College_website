@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $q = trim($q);
             $a = trim($a);
 
-            // ✅ Correct API endpoint for teaching
+            // Call Python teach API
             $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/teach";
             $data = json_encode(["question" => $q, "answer" => $a]);
 
@@ -21,12 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
             $response = curl_exec($ch);
             curl_close($ch);
 
             $decoded = json_decode($response, true);
-            echo json_encode(["reply" => $decoded["response"] ?? "✅ Added new knowledge!"]);
+            echo json_encode(["reply" => $decoded["response"] ?? "✅ Learned successfully!"]);
             exit;
         } else {
             echo json_encode(["reply" => "⚠️ Format error. Use: teach: [question] = [answer]"]);
@@ -34,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // --- NORMAL CHAT MODE ---
+    // --- NORMAL CHAT ---
     $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/chat";
     $data = json_encode(["message" => $userMessage]);
 
@@ -43,17 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
     $response = curl_exec($ch);
     curl_close($ch);
 
-    if ($response) {
-        $decoded = json_decode($response, true);
-        // ✅ Only return the chatbot's text
-        echo json_encode(["reply" => $decoded["response"] ?? "⚠️ No reply found."]);
-    } else {
-        echo json_encode(["reply" => "⚠️ Python backend not reachable."]);
-    }
+    // ✅ Extract only the “response” text
+    $decoded = json_decode($response, true);
+    $reply = $decoded["response"] ?? $decoded["reply"] ?? "⚠️ Couldn't process that.";
+
+    echo json_encode(["reply" => $reply]);
 }
 ?>
 
