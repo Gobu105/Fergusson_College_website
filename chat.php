@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $q = trim($q);
             $a = trim($a);
 
-            // Call Python API
-            $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/chat";
-	    $data = json_encode(["message" => $userMessage]);
+            // ✅ Correct API endpoint for teaching
+            $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/teach";
+            $data = json_encode(["question" => $q, "answer" => $a]);
 
             $ch = curl_init($apiUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -25,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $response = curl_exec($ch);
             curl_close($ch);
 
-            echo $response;
+            $decoded = json_decode($response, true);
+            echo json_encode(["reply" => $decoded["response"] ?? "✅ Added new knowledge!"]);
             exit;
         } else {
             echo json_encode(["reply" => "⚠️ Format error. Use: teach: [question] = [answer]"]);
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // --- NORMAL CHAT ---
+    // --- NORMAL CHAT MODE ---
     $apiUrl = "https://fergusson-college-website-tjpm.onrender.com/chat";
     $data = json_encode(["message" => $userMessage]);
 
@@ -47,9 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     curl_close($ch);
 
     if ($response) {
-        echo $response;
+        $decoded = json_decode($response, true);
+        // ✅ Only return the chatbot's text
+        echo json_encode(["reply" => $decoded["response"] ?? "⚠️ No reply found."]);
     } else {
         echo json_encode(["reply" => "⚠️ Python backend not reachable."]);
     }
 }
 ?>
+
