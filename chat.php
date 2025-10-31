@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Normal chat mode
     $escapedMessage = escapeshellarg($userMessage);
-    $output = shell_exec("/home/gobu105/Projects/Fergusson_College_website/venv/bin/python3 ml_model.py $escapedMessage 2>&1");
+    $output = shell_exec("ml_model.py $escapedMessage 2>&1");
 
     if ($output) {
         $response = json_decode($output, true);
