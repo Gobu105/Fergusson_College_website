@@ -40,19 +40,18 @@ document.getElementById('chatForm').addEventListener('submit', function (event) 
 
   // Send message to PHP backend (chat.php)
   fetch('chat.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ message })
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: new URLSearchParams({ message })
+})
+  .then(response => response.text())  // <-- CHANGED from .json()
+  .then(data => {
+    const botMessage = document.createElement('div');
+    botMessage.classList.add('chat-message', 'bot');
+    botMessage.innerText = data;
+    chatBody.appendChild(botMessage);
+    chatBody.scrollTop = chatBody.scrollHeight;
   })
-    .then(response => response.json()) // Parse JSON
-    .then(data => {
-      const botMessage = document.createElement('div');
-      botMessage.classList.add('chat-message', 'bot');
-      // ✅ Only show the reply text, not the full JSON
-      botMessage.innerText = data.reply || data.response || "⚠️ No reply received.";
-      chatBody.appendChild(botMessage);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    })
     .catch(error => {
       console.error('Error:', error);
       const errorMessage = document.createElement('div');

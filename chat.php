@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: application/json");
+header("Content-Type: text/plain"); // plain text, not JSON
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $userMessage = trim($_POST["message"] ?? "");
@@ -25,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             curl_close($ch);
 
             $decoded = json_decode($response, true);
-            echo json_encode(["reply" => $decoded["response"] ?? "✅ Learned successfully!"]);
+            echo $decoded["response"] ?? "✅ Learned successfully!";
             exit;
         } else {
-            echo json_encode(["reply" => "⚠️ Format error. Use: teach: [question] = [answer]"]);
+            echo "⚠️ Format error. Use: teach: [question] = [answer]";
             exit;
         }
     }
@@ -45,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $response = curl_exec($ch);
     curl_close($ch);
 
-    // ✅ Extract only the “response” text
+    // ✅ Extract only the plain answer
     $decoded = json_decode($response, true);
     $reply = $decoded["response"] ?? $decoded["reply"] ?? "⚠️ Couldn't process that.";
 
-    echo json_encode(["reply" => $reply]);
+    echo $reply; // just plain text, no JSON wrapper
 }
 ?>
 
