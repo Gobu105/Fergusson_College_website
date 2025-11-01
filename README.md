@@ -52,12 +52,13 @@ User ↔ Website (PHP + JS)
          ↓
       FAQ Dataset (CSV)
 ```
+
 | Component       | Technology              | Hosted On  | Purpose                         |
 | --------------- | ----------------------- | ---------- | ------------------------------- |
-| **Website**     | PHP, HTML, CSS, JS      | **Wasmer** | User interface                  |
-| **Chatbot API** | Flask (Python)          | **Render** | Handles `/chat` and `/teach`    |
+| **Website**     | PHP, HTML, CSS, JS      | **Wasmer** | Handles the front-end rendering, HTML, CSS, and JavaScript communication. Also processes forms and sends data to the chatbot API.|
+| **Chatbot API** | Flask (Python)          | **Render** | Runs the chatbot logic — receives user queries from PHP, processes them using ML/NLP, and sends back intelligent responses.|
 | **Data**        | CSV (`faq_data.csv`)    | **Render** | Stores Q&A pairs                |
-| **Model**       | TF-IDF + Fuzzy Matching | **Render** | Generates intelligent responses |
+| **Model**       | TF-IDF + Fuzzy Matching | **Render** | Powers the chatbot’s natural language understanding and similarity matching model (TF-IDF + Fuzzy Matching).|
 
 ---
 
@@ -73,6 +74,13 @@ User ↔ Website (PHP + JS)
 | **Deployment**      | Wasmer (Frontend), Render (Backend)     |
 | **Version Control** | Git & GitHub                            |
 
+
+| Component       | Technology              | Hosted On  | Purpose                         |
+| --------------- | ----------------------- | ---------- | ------------------------------- |
+| **Website**     | PHP, HTML, CSS, JS      | **Wasmer** | User interface                  |
+| **Chatbot API** | Flask (Python)          | **Render** | Handles `/chat` and `/teach`    |
+| **Data**        | CSV (`faq_data.csv`)    | **Render** | Stores Q&A pairs                |
+| **Model**       | TF-IDF + Fuzzy Matching | **Render** | Generates intelligent responses |
 ---
 
 ## ⚙️ Setup Instructions (Local Development)
