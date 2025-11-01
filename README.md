@@ -74,13 +74,6 @@ User ↔ Website (PHP + JS)
 | **Deployment**      | Wasmer (Frontend), Render (Backend)     |
 | **Version Control** | Git & GitHub                            |
 
-
-| Component       | Technology              | Hosted On  | Purpose                         |
-| --------------- | ----------------------- | ---------- | ------------------------------- |
-| **Website**     | PHP, HTML, CSS, JS      | **Wasmer** | User interface                  |
-| **Chatbot API** | Flask (Python)          | **Render** | Handles `/chat` and `/teach`    |
-| **Data**        | CSV (`faq_data.csv`)    | **Render** | Stores Q&A pairs                |
-| **Model**       | TF-IDF + Fuzzy Matching | **Render** | Generates intelligent responses |
 ---
 
 ## ⚙️ Setup Instructions (Local Development)
