@@ -1,115 +1,129 @@
 # 🏫 Fergusson College – Query Chatbot Website
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Language: C](https://img.shields.io/badge/Language-C-blue)
+![Language: PHP](https://img.shields.io/badge/Backend-PHP-blue)
+![Language: Python](https://img.shields.io/badge/AI_Model-Python-yellow)
+![Framework: Flask](https://img.shields.io/badge/Framework-Flask-lightgrey)
 
 **Author:** Jatin Joshi  
 **Institution:** Fergusson College, Pune  
-**Course:** MSc.CA, First Year  
+**Course:** MSc.CA – First Year  
+
+---
+
+## 🌐 Live Demo
+
+- 🖥️ **Website (Frontend – PHP + JS):** [https://fergusson-college-website-tjpm.onrender.com](https://fergusson-college-website-e7ab6.wasmer.app/index.php)  
+- 🧠 **Chatbot API (Python – Flask):** [https://fergusson-ml-api.onrender.com](https://fergusson-college-website-tjpm.onrender.com/)
 
 ---
 
 ## 🤖 Project Overview
 
-This project is designed to simplify the student admission process and general inquiry handling using an interactive chatbot built with **PHP and Python**.  
-The website also showcases essential details about the **college, faculty, courses, infrastructure, and events**, providing an all-in-one information hub.
+This project simplifies the **student admission and inquiry process** using an interactive chatbot built with **PHP (frontend)** and **Python (backend)**.  
+It provides instant answers to common questions about Fergusson College — admissions, courses, fees, events, and more — through a clean, responsive website.
 
 ---
 
 ## 🚀 Key Features
 
-- 💬 **Chatbot System** – Answers FAQs related to admissions, courses, fees, and more.  
-- 🧠 **Database-Driven Responses** – Chatbot fetches accurate data from MySQL tables.  
-- 🏛️ **About Fergusson College** – Historical background, founders, and legacy.  
-- 👨‍🏫 **Faculty Section** – Interactive flip-card layout of department faculty.  
-- 📚 **Courses Page** – Semester-wise course information for MSc Computer Applications.  
-- 🏫 **Infrastructure & Labs** – Details of campus facilities and computing labs.  
-- 📢 **Notices & Events** – Dynamic section for announcements and department activities.  
-- 🔐 **User Login / Registration** – For managing personalized queries (optional).  
-- 📱 **Fully Responsive Design** – Optimized for desktops, tablets, and mobile devices.
+- 💬 **AI-Powered Chatbot** – Answers FAQs about Fergusson College: admissions, academics, and campus life.  
+- 🧠 **Hybrid Architecture** – PHP website communicating with a Python ML backend via REST API.  
+- 🏛️ **About Fergusson College** – Historical background, legacy, and founders.  
+- 👨‍🏫 **Faculty Section** – Interactive flip-card layout of faculty from various departments.  
+- 📚 **Courses Page** – Course-wise details across different degree programs (Arts, Science, Commerce, etc.).  
+- 🧮 **Infrastructure & Labs** – Detailed overview of campus facilities, research centers, and laboratories.  
+- 📢 **Dynamic Events** – Highlights college events, cultural programs, and academic notices.  
+- 📱 **Responsive Design** – Fully optimized for desktop, tablet, and mobile screens.  
+- 🔐 **Teach Mode** – Dynamically add new Q&A pairs using `teach:` command directly from chat.  
+
+---
+
+## 🧩 System Architecture
+
+```plaintext
+User ↔ Website (PHP + JS)
+         ↓
+     chat.php (bridge)
+         ↓
+     Flask API (Render)
+         ↓
+   Machine Learning Model
+         ↓
+      FAQ Dataset (CSV)
+```
+| Component       | Technology              | Hosted On  | Purpose                         |
+| --------------- | ----------------------- | ---------- | ------------------------------- |
+| **Website**     | PHP, HTML, CSS, JS      | **Wasmer** | User interface                  |
+| **Chatbot API** | Flask (Python)          | **Render** | Handles `/chat` and `/teach`    |
+| **Data**        | CSV (`faq_data.csv`)    | **Render** | Stores Q&A pairs                |
+| **Model**       | TF-IDF + Fuzzy Matching | **Render** | Generates intelligent responses |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technologies Used |
-|-------|--------------------|
-| **Frontend** | HTML5, CSS3, JavaScript |
-| **Backend** | PHP/Python |
-| **Database** | CSV |
-| **Version Control** | Git & GitHub |
-| **Server Environment** | XAMPP / Apache on localhost |
+| Layer               | Technologies                            |
+| ------------------- | --------------------------------------- |
+| **Frontend**        | HTML5, CSS3, JavaScript                 |
+| **Backend (Web)**   | PHP 8                                   |
+| **Backend (AI)**    | Python 3.10+, Flask                     |
+| **ML Libraries**    | scikit-learn, pandas, rapidfuzz, joblib |
+| **Data Storage**    | CSV                                     |
+| **Deployment**      | Wasmer (Frontend), Render (Backend)     |
+| **Version Control** | Git & GitHub                            |
 
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️ Setup Instructions (Local Development)
 
-### 1️⃣ Clone the Repository
-
-git clone https://github.com/yourusername/fergusson-chatbot-website.git
-2️⃣ Move to XAMPP Folder
-Place the cloned project inside:
-
-makefile
-Copy code
-C:\xampp\htdocs\
-3️⃣ Start Localhost Server
-Open XAMPP Control Panel
-
-Start Apache and MySQL
-
-4️⃣ Create the Database
-Open your browser and go to http://localhost/phpmyadmin
-
-Create a new database named:
-
-nginx
-Copy code
-admission_chatbot
-Import the SQL file provided in the project (example: database/admission_chatbot.sql)
-
-5️⃣ Run the Project
-Open your browser and visit:
-
-arduino
-Copy code
-http://localhost/fergusson-chatbot-website
+- Clone Repository
+  - git clone https://github.com/yourusername/fergusson-chatbot-website.git
+- Setup PHP Frontend
+  - Move the project into your XAMPP/Apache htdocs folder:
+    - C:\xampp\htdocs\fergusson-chatbot-website
+  - Then start Apache from XAMPP and visit:
+    - http://localhost/fergusson-chatbot-website
+- Setup Python Backend (Optional Local Run)
+  - Navigate to /ml_api folder:
+    - cd ml_api
+    - pip install -r requirements.txt
+    - python app.py
+  - Your Flask API will run locally on:
+    - http://127.0.0.1:5000
 
 ---
 
-## 📄 Project Purpose
+##🧠 How the Chatbot Works
 
-Developed as part of the **MSc Computer Applications (MSc.CA)** course at **Fergusson College, Pune**, this project demonstrates how a **chatbot system** can streamline communication between students and the college.  
-It aims to make **college information, admissions, course details, and FAQs** easily accessible to students through an interactive, database-driven chatbot interface.
+1. User types a message in the chat window.
+
+2. The PHP file chat.php sends it to the Flask API endpoint /chat.
+
+3. The backend compares the input to existing questions using:
+     - TF-IDF Vector Similarity
+     - RapidFuzz String Matching
+4. It selects the most relevant answer and returns it as a JSON response.
+5. The JS script displays the chatbot’s message dynamically.
 
 ---
 
 ## 🌟 Future Improvements
 
-- 🧩 Add an **Admin Dashboard** to manage chatbot responses and FAQs dynamically.  
-- 🧠 Integrate **Natural Language Processing (NLP)** for smarter, context-based answers.  
-- 💬 Store and display **chat history** for better user experience and tracking.  
-- 🌐 **Host the project online** for public access and real-world usability.
+- 🧩 Admin Dashboard – Manage FAQs, retrain model directly from web.
+- 🧠 Semantic Search (Sentence-BERT) – Replace TF-IDF for better meaning-based responses.
+- 💬 Typing Indicator – “Bot is replying…” animation in chat.
+- 🔒 API Security – Protect backend with secret key.
+- 🧑‍💻 Conversation History – Store and view previous chat logs.
+- ⚡ Auto-Retrain – Rebuild model when new data is added.
 
 ---
 
-MIT License
+## 🏆 Project Purpose
+Developed as part of **MSc Computer Applications (MSc.CA)** at **Fergusson College, Pune**,
+this project demonstrates practical integration of **Machine Learning With web Technologies**,
+bridging **PHP frontend and Python AI backend** for intelligent user interaction.
 
-Copyright (c) 2025 Gobu
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## 📄 License
+***MIT License***
+Copyright (c) 2025 **Jatin Joshi**
