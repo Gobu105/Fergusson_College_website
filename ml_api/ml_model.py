@@ -9,14 +9,10 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from rapidfuzz import fuzz
-from dotenv import load_dotenv
-
-# === Load environment variables ===
-load_dotenv()
 
 # === Configuration ===
-DATA_FILE = os.getenv("DATA_FILE", "ml_api/college_faq_dataset.csv")
-MODEL_FILE = os.getenv("MODEL_FILE", "ml_api/model_data.pkl")
+DATA_FILE = "college_faq_dataset.csv"
+MODEL_FILE = "model_data.pkl"
 
 CONFIDENCE_THRESHOLD = 0.45
 TFIDF_WEIGHT = 0.7
