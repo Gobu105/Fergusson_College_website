@@ -10,7 +10,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from rapidfuzz import fuzz
 
 # === Configuration ===
-DATA_FILE = "faq_data.csv"
+DATA_FILE = "college_faq_dataset.csv"
 MODEL_FILE = "model_data.pkl"
 
 CONFIDENCE_THRESHOLD = 0.45
