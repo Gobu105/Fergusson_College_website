@@ -40,17 +40,27 @@ def preprocess(text):
 
 # === Data Loading ===
 def load_data():
-    """Load FAQ data and preprocess questions."""
     try:
         df = pd.read_csv(DATA_FILE)
-        if "question" not in df.columns or "answer" not in df.columns:
+        
+        # ✅ Handle different dataset formats automatically
+        if "generated_question" in df.columns and "answer" in df.columns:
+            df = df.rename(columns={"generated_question": "question"})
+        elif "original_question" in df.columns and "answer" in df.columns:
+            df = df.rename(columns={"original_question": "question"})
+        elif not ("question" in df.columns and "answer" in df.columns):
             raise ValueError("CSV must contain 'question' and 'answer' columns.")
+        
         df.dropna(subset=["question", "answer"], inplace=True)
         df["question_proc"] = df["question"].astype(str).map(preprocess)
+        
+        print(f"📘 Loaded {len(df)} questions for training")
         return df.reset_index(drop=True)
+    
     except Exception as e:
-        print("❌ Error loading dataset:", e)
+        print("Error loading dataset:", e)
         return pd.DataFrame(columns=["question", "answer", "question_proc"])
+
 
 # === TF-IDF ===
 def compute_tfidf_and_matrix(df):
