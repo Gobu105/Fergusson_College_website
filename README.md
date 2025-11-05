@@ -42,7 +42,7 @@ The website also showcases essential details about the **college, faculty, cours
 ---
 
 ## ChatBot Flow Diagram
-<img src="images/Gemini_Generated_Image_4bqoat4bqoat4bqo.png" alt="ChatBot Flow Diagram" width="1000" height="800"/>
+<img src="images/diagram.png" alt="ChatBot Flow Diagram" width="1000" height="800"/>
 
 ---
 
