@@ -1264,49 +1264,335 @@ footer {
     right: 5%;
   }
 }
+/* 🌐 Mobile Optimization */
+@media (max-width: 600px) {
 
-/* ---------- Keep Desktop Layout on Mobile ---------- */
-@media (max-width: 480px) {
-  html {
-    transform: scale(0.85);       /* shrink overall content */
-    transform-origin: top center; /* scale from top */
-    width: 117%;                  /* fix minor cutoff issue */
-    overflow-x: hidden;           /* prevent scroll */
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
 
-  /* Ensure grids remain multi-column like desktop */
-  .courses-container,
-  .labs-list,
-  .faculty-grid,
-  .footer-content {
-    grid-template-columns: inherit !important;
+  /* --- GENERAL --- */
+  header {
+    padding: 0.8rem 1rem;
   }
 
-  /* Keep horizontal flex layouts (like events, reviews, etc.) */
-  .event-cards,
-  .reviews-container {
-    flex-wrap: nowrap !important;
-    overflow-x: auto;
-    scroll-behavior: smooth;
+  h1, h2 {
+    font-size: 1.5rem;
+    text-align: center;
   }
 
-  /* Fix chat button & container position */
-  .chat-btn {
-    bottom: 25px;
-    right: 25px;
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-  }
-
-  .chat-container {
-    width: 380px;
-    right: 15px;
-    bottom: 85px;
+  section {
+    padding: 2.5rem 1rem;
   }
 
   footer {
     text-align: center;
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+
+  /* --- CARDS --- */
+  .course-card, .event-card, .lab-card {
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 12px;
+  }
+
+  /* --- CHATBOT FLOATING BUTTON --- */
+  .chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0066ff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  /* --- CHAT CONTAINER --- */
+  .chat-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 92vw;
+    max-width: 360px;
+    height: 70vh;
+    display: none;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    overflow: hidden;
+    z-index: 999;
+  }
+
+  .chat-header {
+    background: #0066ff;
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .chat-message {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+
+  .chat-message.user {
+    background: #e0e0ff;
+    align-self: flex-end;
+  }
+
+  .chat-message.bot {
+    background: #f3f3f3;
+    align-self: flex-start;
+  }
+
+  .chat-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  .send-btn {
+    background: #0066ff;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* --- BACKGROUND --- */
+  body {
+    background: linear-gradient(180deg, #f9fbff 0%, #eef3ff 100%);
+    font-family: "Poppins", sans-serif;
   }
 }
+
+
+/* ---------- Cards & Reviews & Faculty - Mobile Tweaks ---------- */
+@media (max-width: 600px) {
+
+  /* ----- REVIEWS ----- */
+  .reviews-section {
+    padding: 30px 12px;
+  }
+
+  .reviews-slider {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Make the reviews track wrap instead of requiring a huge width,
+     and slow the animation slightly for readability on mobile. */
+  .reviews-track {
+    display: flex;
+    gap: 12px;
+    width: auto;                 /* allow natural width so it can wrap */
+    flex-wrap: nowrap;          /* keep horizontal scroll, but allow user control */
+    padding-bottom: 8px;
+    animation: none;            /* disable auto-scroll by default on mobile for UX */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* 🧩 Reviews Section */
+.reviews-section {
+  padding: 30px 12px;
+  overflow: hidden; /* hides scrollbar, but keeps animation clean */
+  position: relative;
+}
+
+/* 🧠 Reviews Track (the moving container) */
+.reviews-track {
+  display: flex;
+  gap: 16px;
+  width: max-content; /* important: allows full scroll width */
+  animation: scrollReviews 30s linear infinite;
+  padding-left: 16px;   /* ensures first card not cut on left */
+  padding-right: 16px;  /* ensures last card not cut on right */
+}
+
+/* 💬 Individual Review Card */
+.review-card {
+  flex: 0 0 auto;
+  width: 80%;
+  max-width: 300px;
+  min-width: 260px;
+  margin-right: 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 14px;
+  text-align: left;
+}
+
+/* ⭐ Star size */
+.stars {
+  font-size: 0.95rem;
+}
+
+/* 🌀 Smooth continuous scroll animation */
+@keyframes scrollReviews {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* -50% looks smoother with duplicates */
+}
+
+
+  /* Faculty Section Wrapper */
+  .faculty-page {
+    padding: 30px 5%;
+  }
+
+  /* Faculty Grid */
+  .faculty-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* single column on mobile */
+    gap: 20px;
+    justify-items: center;
+  }
+
+  /* Card Container */
+  .faculty-card {
+    width: 90%;
+    height: 280px; /* smaller height for mobile */
+    perspective: 1000px;
+  }
+
+  /* Inner Wrapper for Flip */
+  .faculty-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  /* Keep the same flip behavior */
+  .faculty-card:hover .faculty-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* Front + Back Shared */
+  .faculty-front,
+  .faculty-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  }
+
+  /* Front Side */
+  .faculty-front {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .faculty-front img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+  }
+
+  .faculty-front h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .faculty-front p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  /* Back Side */
+  .faculty-back {
+    background: #f9f9ff;
+    color: #333;
+    transform: rotateY(180deg);
+    padding: 16px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* ----- LABS / INFRASTRUCTURE / INFRA CARD ----- */
+  /* If you have .lab-card / .infrastructure-card, make them stack nicely */
+  .labs-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0 6%;
+  }
+
+  .lab-card, .infrastructure-card {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .lab-card img, .infrastructure-card img {
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .lab-card span {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+  }
+
+  /* ----- BUTTONS & READ MORE ----- */
+  .read-more-btn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+
+  /* keep footer tidy */
+  footer .footer-content {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+

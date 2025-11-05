@@ -23,6 +23,11 @@ function toggleChat() {
 }
 
 // ---------- Chatbot Functionality ----------
+function scrollToBottom() {
+  const chatBody = document.getElementById('chat-body');
+  chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' });
+}
+
 document.getElementById('chatForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -50,7 +55,7 @@ document.getElementById('chatForm').addEventListener('submit', function (event) 
     botMessage.classList.add('chat-message', 'bot');
     botMessage.innerText = data;
     chatBody.appendChild(botMessage);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    scrollToBottom();
   })
     .catch(error => {
       console.error('Error:', error);
@@ -75,5 +80,34 @@ if (facultySearch) {
       card.style.display = text.includes(searchValue) ? "block" : "none";
     });
   });
+}
+
+/* ---------- Faculty tap-to-flip for mobile (add near your existing faculty logic) ---------- */
+document.querySelectorAll('.faculty-card').forEach(card => {
+  // allow tap to flip on touch devices
+  card.addEventListener('click', (e) => {
+    const inner = card.querySelector('.faculty-inner');
+    if (!inner) return;
+    inner.classList.toggle('is-flipped');
+  });
+});
+
+/* ---------- Ensure chat autoscroll when opening chat and after receiving bot reply ---------- */
+function scrollToBottom() {
+  const chatBody = document.getElementById('chat-body');
+  if (!chatBody) return;
+  // short delay ensures new element has rendered
+  setTimeout(() => chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' }), 40);
+}
+
+// call scrollToBottom() after you append user message and after appending bot message
+// and also call when chat is toggled open:
+function toggleChat() {
+  const chatContainer = document.getElementById('chatContainer');
+  chatContainer.style.display =
+    chatContainer.style.display === "none" || chatContainer.style.display === ""
+      ? "flex"
+      : "none";
+  if (chatContainer.style.display === 'flex') scrollToBottom();
 }
 
