@@ -3,10 +3,8 @@ name = "fergusson_college_website"
 version = "1.0.0"
 description = "Fergusson College website with chatbot"
 
-[dependencies]
-php = ">=8.2"
-
 [[command]]
 name = "web"
 runner = "php"
 exec = "php -S 0.0.0.0:8080 -t ."
+
