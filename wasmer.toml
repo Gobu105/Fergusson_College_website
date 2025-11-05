@@ -3,8 +3,11 @@ name = "fergusson_college_website"
 version = "1.0.0"
 description = "Fergusson College website with chatbot"
 
+[build]
+command = "echo 'No build step required'"
+
 [[command]]
-name = "web"
+name = "start"
 runner = "php"
 exec = "php -S 0.0.0.0:8080 -t ."
 
