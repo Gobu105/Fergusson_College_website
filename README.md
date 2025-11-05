@@ -41,6 +41,11 @@ The website also showcases essential details about the **college, faculty, cours
 
 ---
 
+## ChatBot Flow Diagram
+<img src="images/diagram.png" alt="ChatBot Flow Diagram" width="400"/>
+
+---
+
 ## ⚙️ Setup Instructions
 
 ### 1️⃣ Clone the Repository
