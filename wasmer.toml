@@ -6,9 +6,6 @@ description = "Fergusson College website with chatbot"
 [build]
 command = "echo 'No build step required'"
 
-[dependencies]
-php = ">=8.2"
-
 [[command]]
 name = "start"
 runner = "php"
