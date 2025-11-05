@@ -6,6 +6,7 @@
   <title>Fergusson College</title>
   <link rel="icon" type="image/x-icon" href="/images/images.png">
   <link rel="stylesheet" href="script/styles.css">
+  <script src="script/script.js" defer></script>
 </head>
 <body>
 
